@@ -1,5 +1,9 @@
 ChangeLog
 
+v0.3.1
+
+- Formatage des Form
+
 v0.3
 
 - Mise en place de Bootstrap
