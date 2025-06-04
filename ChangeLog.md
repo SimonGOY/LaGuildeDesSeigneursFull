@@ -1,5 +1,10 @@
 ChangeLog
 
+v0.3
+
+- Mise en place de Bootstrap
+- Modification de l'index   
+
 v0.2
 
 - Mise en place des données
