@@ -1,5 +1,9 @@
 ChangeLog
 
+v0.4
+
+- Gestion des utilisateurs
+
 v0.3.1
 
 - Formatage des Form
