@@ -1,5 +1,9 @@
 ChangeLog
 
+v0.8
+
+- Ajout de la Command pour les sitemaps
+
 v0.7
 
 - Ajout des extensions Twig
