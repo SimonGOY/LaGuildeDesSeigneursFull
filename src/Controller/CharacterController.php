@@ -17,7 +17,7 @@ use DateTime;
 final class CharacterController extends AbstractController
 {
     public function __construct(
-    private SluggerInterface $slugger,
+        private SluggerInterface $slugger,
     ) {
     }
 

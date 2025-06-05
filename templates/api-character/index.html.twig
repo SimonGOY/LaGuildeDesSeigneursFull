@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Character index{% endblock %}
+
+{% block body %}
+    <h1>Index des personnages</h1>
+
+    <table class="table text-center table-hover">
+        <thead>
+            <tr>
+                {# Ceci est la partie des noms de colonne #}
+                <th>Kind</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>Surname</th>
+                <th>Caste</th>
+                <th>Knowledge</th>
+                <th>Intelligence</th>
+                <th>Strength</th>
+                <th>Creation</th>
+                <th>Modification</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {# Boucle pour chaque personnage #}
+        {% for character in characters %}
+
+            {# Ceci est la partie du contenu des lignes #}
+            <tr>
+                <td>
+                    {% if character.kind == "Dame" %}<strong>{% endif %}
+                    {{ character.kind }}
+                    {% if character.kind == "Dame" %}</strong>{% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('api_character_show', {'identifier': character.identifier}) }}">
+                        {{ character.name }}
+                    </a>
+                </td>
+                <td>{{ character.slug }}</td>
+                <td>{{ character.surname }}</td>
+                <td>{{ character.caste }}</td>
+                <td>{{ character.knowledge }}</td>
+                <td>{{ character.intelligence }}</td>
+                <td>{{ character.strength }}</td>
+                <td>{{ character.creation ? character.creation|date('d-m-Y') : '' }}</td>
+                <td>{{ character.modification ? character.modification|date('d-m-Y') : '' }}</td>
+                <td>
+                    <a href="{{ path('api_character_edit', {'identifier': character.identifier}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# Bouton pour ajouter un personnage #}
+    <div class="text-center mt-3 mb-3">
+        <a href="{{ path('api_character_new') }}" class="btn btn-primary">Nouveau Character</a>
+    </div>
+{% endblock %}
