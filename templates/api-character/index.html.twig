@@ -46,11 +46,11 @@
                 <td>{{ character.knowledge }}</td>
                 <td>{{ character.intelligence }}</td>
                 <td>{{ character.strength }}</td>
-                <td>{{ character.health }}</td>
+                <td><a href="{{ path('api_character_health', {'maxHealth': character.health}) }}" class="text-decoration-none">{{ character.health }}</a></td>
                 <td>{{ character.creation ? character.creation|date('d-m-Y') : '' }}</td>
                 <td>{{ character.modification ? character.modification|date('d-m-Y') : '' }}</td>
                 <td>
-                    <a href="{{ path('api_character_edit', {'identifier': character.identifier}) }}">Modifier</a>
+                    <a href="{{ path('api_character_edit', {'identifier': character.identifier}) }}" class="btn btn-outline-dark my-2">Modifier</a>
                 </td>
             </tr>
         {% else %}

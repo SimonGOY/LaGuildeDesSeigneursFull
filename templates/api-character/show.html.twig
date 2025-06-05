@@ -5,6 +5,17 @@
 {% block body %}
     <h1>Personnage</h1>
 
+    <div class="col-4 offset-4 text-center bg-light">
+        <p> Je m'appelle <strong>{{ character.name }}</strong>. {{ gender(character.kind)|raw }}</p>
+        <p> Je fais partie de La Guilde des Seigneurs !</p>
+        <p> Je suis {{ feminin(character.kind, 'un') }} <strong>{{ character.kind }}</strong> de la caste <strong>{{ character.caste }}</strong>.</p>
+        <p> Mon surnom est <strong>{{ character.surname }}</strong>.</p>
+        <p> Mon intelligence est de <strong>{{ character.intelligence }}</strong> et ma force de <strong>{{ character.strength }}</strong>.</p>
+        <p> Je suis assez {{ feminin(character.kind, 'fort') }} dans <strong>{{ character.knowledge }}</strong>.</p>
+        <p> Ma santé est de <strong>{{ character.health }}</strong> et j'ai une puissance de <strong>{{ character|puissance }}</strong>.</p>
+        <p> Mon identifiant est <strong>{{ character.identifier|identifier }}</strong>.</p>
+    </div>
+
     <div class="col-6 offset-3">
         <table class="table">
             <tbody>
@@ -67,9 +78,9 @@
             </tbody>
         </table>
 
-        <a href="{{ path('api_character_index') }}">back to list</a>
+        <a href="{{ path('api_character_index') }}" class="btn btn-outline-light my-2">Retour à la liste</a>
 
-        <a href="{{ path('api_character_edit', {'identifier': character.identifier}) }}">edit</a>
+        <a href="{{ path('api_character_edit', {'identifier': character.identifier}) }}" class="btn btn-outline-dark my-2">Éditer</a>
     </div>
 
     {{ include('api-character/_delete_form.html.twig') }}

@@ -1,5 +1,9 @@
 ChangeLog
 
+v0.7
+
+- Ajout des extensions Twig
+
 v0.6
 
 - Ajout de la propriété health
