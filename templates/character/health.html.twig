@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Personnages avec Health ≤ {{ maxHealth }}{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Personnages avec Health ≤ {{ maxHealth }}</h1>
+    </div>
+
+    {% if characters|length > 0 %}
+
+        <table class="table text-center table-hover">
+            <thead>
+                <tr>
+                    <th>Kind</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Caste</th>
+                    <th>Intelligence</th>
+                    <th>Strength</th>
+                    <th>Health</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for character in characters %}
+                    <tr>
+                        <td>
+                            {% if character.kind == "Dame" %}<strong>{% endif %}
+                            {{ character.kind }}
+                            {% if character.kind == "Dame" %}</strong>{% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ path('app_character_show', {'id': character.id}) }}">
+                                {{ character.name }}
+                            </a>
+                        </td>
+                        <td>{{ character.surname }}</td>
+                        <td>{{ character.caste }}</td>
+                        <td>{{ character.intelligence }}</td>
+                        <td>{{ character.strength }}</td>
+                        <td> {{ character.health }}</td>
+                        <td>
+                            <a href="{{ path('app_character_edit', {'id': character.id}) }}" 
+                               class="btn btn-sm btn-outline-secondary">Modifier</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-warning text-center">
+            <h4>Aucun personnage trouvé</h4>
+            <p>Aucun personnage n'a un niveau de santé inférieur ou égal à <strong>{{ maxHealth }}</strong>.</p>
+            <a href="{{ path('app_character_health', {'maxHealth': 250}) }}" class="btn btn-primary">
+                Voir tous les personnages (Health ≤ 250)
+            </a>
+        </div>
+    {% endif %}
+
+    {# Bouton pour créer un nouveau personnage #}
+    <div class="text-center mt-4">
+        <a href="{{ path('app_character_new') }}" class="btn btn-primary">Nouveau Character</a>
+    </div>
+{% endblock %}

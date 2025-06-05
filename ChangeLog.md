@@ -1,5 +1,11 @@
 ChangeLog
 
+v0.6
+
+- Ajout de la propriété health
+
+- Ajout de la route par vie triée
+
 v0.5
 
 - Mise en place de l'utilisation de l'API

@@ -138,4 +138,21 @@ class ApiCharacterController extends AbstractController
 
         return $this->redirectToRoute('api_character_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/health/{maxHealth}', name: 'api_character_health', requirements: ['maxHealth' => '\d+'], methods: ['GET'])]
+    public function health(Request $request, int $maxHealth): Response
+    {
+        $response = $this->client->request(
+            'GET',
+            $this->getParameter('app.api_url') . '/characters/health/' . $maxHealth,
+            [
+                'auth_bearer' => $request->getSession()->get('token'),
+            ]
+        );
+
+        return $this->render('api-character/health.html.twig', [
+            'characters' => $response->toArray(),
+            'maxHealth' => $maxHealth,
+        ]);
+    }
 }

@@ -75,7 +75,7 @@ final class CharacterController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // Mieux dans un service
             $character->setSlug($this->slugger->slug($character->getName())->lower());
-            $character->setModification(new DateTimeImmutable());
+            $character->setModification(new DateTime());
 
             $entityManager->persist($character);
             $entityManager->flush();
@@ -100,5 +100,16 @@ final class CharacterController extends AbstractController
         }
 
         return $this->redirectToRoute('app_character_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/health/{maxHealth}', name: 'app_character_health', requirements: ['maxHealth' => '\d+'], methods: ['GET'])]
+    public function health(CharacterRepository $characterRepository, int $maxHealth): Response
+    {
+        $characters = $characterRepository->findByHealthLevelOrBelow($maxHealth);
+
+        return $this->render('character/health.html.twig', [
+            'characters' => $characters,
+            'maxHealth' => $maxHealth,
+        ]);
     }
 }

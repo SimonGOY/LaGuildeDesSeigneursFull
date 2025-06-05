@@ -42,6 +42,16 @@ class CharacterForm extends AbstractType
                 'placeholder' => 'Niveau de force du Character (1-250)',
                 ),
             ))
+            ->add('health', IntegerType::class, array(
+                'required' => false,
+                'label' => 'Niveau de vie',
+                'help' => 'Niveau de santé du Character (1-250)',
+                'attr' => array(
+                    'min' => 1,
+                    'max' => 250,
+                    'placeholder' => 'Niveau de vie du Character (1-250)',
+                ),
+            ))
             ->add('image', TextType::class, array(
                 'required' => false,
             ))

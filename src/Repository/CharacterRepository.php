@@ -16,6 +16,20 @@ class CharacterRepository extends ServiceEntityRepository
         parent::__construct($registry, Character::class);
     }
 
+    /**
+     * @return Character[] Returns an array of Character objects
+     */
+    public function findByHealthLevelOrBelow(int $maxHealth): array
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.health <= :maxHealth')
+            ->andWhere('c.health IS NOT NULL')
+            ->setParameter('maxHealth', $maxHealth)
+            ->orderBy('c.health', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Character[] Returns an array of Character objects
     //     */

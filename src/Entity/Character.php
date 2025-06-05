@@ -54,6 +54,9 @@ class Character
     #[ORM\ManyToOne(inversedBy: 'characters')]
     private ?User $user = null;
 
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $health = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -211,6 +214,18 @@ class Character
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getHealth(): ?int
+    {
+        return $this->health;
+    }
+
+    public function setHealth(?int $health): static
+    {
+        $this->health = $health;
 
         return $this;
     }

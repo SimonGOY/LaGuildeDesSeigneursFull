@@ -43,6 +43,10 @@ class AppFixtures extends Fixture
         $character->setIdentifier(hash('sha1', uniqid()));
         $character->setCreation(new \DateTime());
         $character->setModification(new \DateTime());
+
+        // Génère une valeur de health aléatoire entre 1 et 100
+        $randomHealth = rand(1, 250);
+        $character->setHealth($randomHealth);
         
         return $character;
     }
